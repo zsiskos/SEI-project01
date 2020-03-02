@@ -120,8 +120,11 @@ function initiateWar() {
 	} else {
 		console.log("tie")
 	}
-	console.log(playerOneScore)
-	console.log(playerTwoScore)
+	let playerOneScoreEl = document.getElementById('score1');
+	playerOneScoreEl.innerText = playerOneScore
+	
+	let playerTwoScoreEl = document.getElementById('score2');
+	playerTwoScoreEl.innerText = playerTwoScore
 	// check if there are any cards left to play
 	if (playerDecks[1].length === 0) {
 		console.log('time to check winner')
