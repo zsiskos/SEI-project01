@@ -20,7 +20,7 @@ class Card {
     constructor(suit, value) {
         this.suit = suit;
         this.value = value;
-        this.imgUrl = `/images/${suit}/${suit}-${value}.svg`
+        this.imgUrl = `./images/${suit}/${suit}-${value}.svg`
         this.rank = RANKS[value]
     }
 }
@@ -93,9 +93,7 @@ document.getElementById('reset').addEventListener('click', resetGame)
 
 //Game play
 // * initiateWar logic:
-//  - clicking fight button pushes last item from player array 
 //	- it takes the imgUrl and updates the img in the HTML to show the card
-	// - does the same for second player at the same time
 //	- it takes the values and compares them
 // - it checks the the array length 
 	//	- if not 0 then does nothing)
@@ -103,11 +101,21 @@ document.getElementById('reset').addEventListener('click', resetGame)
 
 function initiateWar() {
 	console.log('fight')
-	//get card from player1 and change out current card to the new image
+	//get card from playerDecks for each player
 	let playerOneCard = playerDecks[1].shift()
 	let playerTwoCard = playerDecks[-1].shift()
 	console.log(playerOneCard)
 	console.log(playerTwoCard)
+	//change to show image related to card above
+	let cardOneElement = document.getElementById('player1Card');
+	cardOneElement.setAttribute('src', playerOneCard.imgUrl);
+
+	let cardTwoElement = document.getElementById('player2Card');
+	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
+	//compare values to award points
+	
+
+	// check if there are any cards left to play
 
 }; 
 
