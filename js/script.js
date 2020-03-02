@@ -1,14 +1,15 @@
+//Constant variables/obj
 const SUITS = ['hearts', 'diamonds', 'clubs', 'spades']
 const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const RANKS = {
-    '2': 2,
-    '3': 3,
-    '4': 4,
-    '5': 5,
-    '6': 6,
-    '7': 7,
-    '8': 8,
-    '9': 9,
+    '2': 02,
+    '3': 03,
+    '4': 04,
+    '5': 05,
+    '6': 06,
+    '7': 07,
+    '8': 08,
+    '9': 09,
     '10': 10,
     'J': 11,
     'Q': 12,
@@ -16,6 +17,7 @@ const RANKS = {
     'A': 14
 }
 
+//Creates the deck
 class Card {
     constructor(suit, value) {
         this.suit = suit;
@@ -26,6 +28,7 @@ class Card {
 }
 
 let deck = []
+
 let playerDecks = {
     '1': [],
     '-1': []
@@ -37,12 +40,12 @@ SUITS.forEach(suit => {
     })
 })
 
+//Splits deck randomly into two decks for players
 function splitDeck() {
     playerDecks = {
         '1': [],
         '-1': []
 	}
-	
     let player = 1
     let deckCopy = [].concat(deck)
     let numCards = deck.length;
@@ -62,7 +65,6 @@ console.log(playerDecks)
 // something to change winner Message
 
 //event listeners
-
 document.getElementById('fight').addEventListener('click', initiateWar)
 document.getElementById('reset').addEventListener('click', resetGame)
 
@@ -99,6 +101,9 @@ document.getElementById('reset').addEventListener('click', resetGame)
 	//	- if not 0 then does nothing)
 	// - if 0 then initiates checkWinner
 
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
 function initiateWar() {
 	console.log('fight')
 	//get card from playerDecks for each player
@@ -113,11 +118,26 @@ function initiateWar() {
 	let cardTwoElement = document.getElementById('player2Card');
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
 	//compare values to award points
+
+	if (playerOneCard.rank > playerTwoCard.rank) {
+		// return playerOneScore += 1;
+		playerOneScore += 1
+		console.log("player1 wins")
+	} else if (playerOneCard.rank < playerTwoCard.rank) {
+		playerTwoScore += 1 
+		console.log("player2 wins")
+	} else {
+		console.log("tie")
+	}
+	console.log(playerOneScore)
+	console.log(playerTwoScore)
+};
+
 	
 
 	// check if there are any cards left to play
 
-}; 
+ 
 
 
 
