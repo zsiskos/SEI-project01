@@ -113,10 +113,10 @@ function initiateWar() {
 	//compare values to award points
 	if (playerOneCard.rank > playerTwoCard.rank) {
 		playerOneScore += 1
-		console.log("player1 wins")
+		console.log("player1 pt")
 	} else if (playerOneCard.rank < playerTwoCard.rank) {
 		playerTwoScore += 1 
-		console.log("player2 wins")
+		console.log("player2 pt")
 	} else {
 		console.log("tie")
 	}
@@ -129,24 +129,18 @@ function initiateWar() {
 	}
 };
 
+//Comparing scores to find a winner
 function checkWinner() {
-	console.log('winner checked!')
+	if (playerOneScore > playerTwoScore) {
+		console.log("player1 wins")
+	} else if (playerOneScore < playerTwoScore) {
+		console.log("player2 wins")
+	} else {
+		console.log("tie")
+	}
 }
-
-	
-
- 
-
-
 
 //click button to reset game
 function resetGame() {
 	console.log('reset')
-}; 
-
-
-//Comparing scores to find a winner
-
-
-
-
+}
