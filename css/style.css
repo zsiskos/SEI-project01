@@ -7,75 +7,73 @@ body {
     display: flex;
     flex-direction: column;
     width: auto;
-    height: 100vh;    
+    height: 100vh; 
+    border: 1px solid red;   
 }
 
 header {
     display: flex;
-    width: 100%;
+    width: auto;
     height: 100px;
     background-color: gray;
+    padding: 30px;
+    justify-content: center;
+}
+
+h1 {
+	color: #07A65A5;
+	font-size: 45px;
+	margin: 0px;
+    font-weight: 400;
+   
+}
+
+h3 {
+
 }
 
 nav {
     display: flex;
-    width: 100%;
+    width: auto;
+    height: 50px;
     background-color: lightblue;
 }
 
 main {
    display: flex;
-    background-color: lightcoral;
+   align-self: center;
+   justify-content: space-around;
+   width: 850px;
+   margin: 35px auto;
+   background-color: lightcoral;
 }
 
-.player1 {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 3;
-    border: 5px solid purple;
-}
-.player2 {
-    grid-column: 4 / span 1;
-    grid-row: 1 / span 3;
-    border: 5px solid lime;
-}
-.arena {
-    grid-column: 2 / span 2;
-    grid-row: 2 / span 2;
-    border: 1px solid red;
+img {
+    display: flex;
+    margin: 40px 8px 0;
+    border: 1px solid black;
+    border-radius: 5%;
 }
 
-.score {
-    border: 1px solid red;
-}
-
-.score1 {
-    grid-column: 1 / span 1;
-    grid-row: 4 / span 1;
-    border: 5px solid orange;
-
-}
-
-.score2 {
-    grid-column: 4 / span 1;
-    grid-row: 4 / span 1;
-    border: 5px solid orange;
+.button {
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    border: 1px solid red;   
 
 }
 
 button {
-    border: 1px solid red;
-}
-
-.fight {
-    grid-column: 2 / span 1;
-    grid-row: 4 / span 1;
-    border: 1px solid red;
-}
-
-.reset {
-    grid-column: 3 / span 1;
-    grid-row: 4 / span 1;
-    border: 1px solid red;
+    align-items: center;
+    text-transform: uppercase;
+	font-size: 24px;
+	color: #FFFFFF;
+	background-color: #160539;
+	padding: 15px;
+	margin: 20px 20px;
+	border-radius: 12px;
 }
 
 footer {
