@@ -18,6 +18,8 @@ const RANKS = {
 }
 
 //Creates the deck
+let deck = []
+
 class Card {
     constructor(suit, value) {
         this.suit = suit;
@@ -27,13 +29,6 @@ class Card {
     }
 }
 
-let deck = []
-
-let playerDecks = {
-    '1': [],
-    '-1': []
-}
-
 SUITS.forEach(suit => {
     VALUES.forEach(val => {
         deck.push(new Card(suit, val))
@@ -41,6 +36,11 @@ SUITS.forEach(suit => {
 })
 
 //Splits deck randomly into two decks for players
+let playerDecks = {
+    '1': [],
+    '-1': []
+}
+
 function splitDeck() {
     playerDecks = {
         '1': [],
@@ -61,37 +61,13 @@ splitDeck()
 console.log(deck)
 console.log(playerDecks)
 
-//cached element references
-// something to change winner Message
+//cached references
+fight = document.getElementById('fight')
+playAgain = document.getElementById('reset')
 
 //event listeners
-document.getElementById('fight').addEventListener('click', initiateWar)
-document.getElementById('reset').addEventListener('click', resetGame)
-
-
-// * loadGame logic:
-//     - Initialize all state variables by calling init()
-//         - deckOfCards with all the cards gets randomly pushed into two arrays, player1Cards and player2Cards arrays
-//         - fight button is displayed
-//         - player1Score and player2Score set to 0
-//         - cardInPlay1 and cardInPlay2 variables reset
-//         - player names updated (see stretch goals for player names)
-//     - Update the display by calling render()
-//         - console.log that game has started
-
-
-//Creates the game board for cards
-// function createBoard() {
-// 	for (let i = 0; i < cards.length; i++) {
-// 		let cardElement = document.createElement('img');
-// 		cardElement.setAttribute('src', 'images/back/blue.svg');
-// 		cardElement.setAttribute('data-id', i)
-// 		cardElement.addEventListener('click', flipCard);
-// 		document.getElementById('game-board').appendChild(cardElement);
-// 	};	
-// };
-
-// createBoard();
+fight.addEventListener('click', initiateWar)
+playAgain.addEventListener('click', resetGame)
 
 //Game play
 let playerOneScore = 0;
@@ -107,7 +83,6 @@ function initiateWar() {
 	//change to show image related to card above
 	let cardOneElement = document.getElementById('player1Card');
 	cardOneElement.setAttribute('src', playerOneCard.imgUrl);
-
 	let cardTwoElement = document.getElementById('player2Card');
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
 	//compare values to award points
@@ -120,14 +95,15 @@ function initiateWar() {
 	} else {
 		console.log("tie")
 	}
+	//displays points on screen
 	let playerOneScoreEl = document.getElementById('score1');
 	playerOneScoreEl.innerText = playerOneScore
-	
 	let playerTwoScoreEl = document.getElementById('score2');
 	playerTwoScoreEl.innerText = playerTwoScore
 	// check if there are any cards left to play
 	if (playerDecks[1].length === 0) {
 		console.log('time to check winner')
+		fight.remove();
 		checkWinner();
 	}
 };
@@ -135,11 +111,12 @@ function initiateWar() {
 //Comparing scores to find a winner
 function checkWinner() {
 	if (playerOneScore > playerTwoScore) {
-		console.log("player1 wins")
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else if (playerOneScore < playerTwoScore) {
-		console.log("player2 wins")
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
-		console.log("tie")
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player2`)
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player2`)
 	}
 }
 
