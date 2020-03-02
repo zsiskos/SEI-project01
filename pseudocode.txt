@@ -1,0 +1,36 @@
+* loadGame logic:
+    - Initialize all state variables by calling init()
+        - allCardsArray with all the cards gets randomly pushed into two arrays, player1Cards and player2Cards arrays
+        - fight button is displayed
+        - player1Score and player2Score set to 0
+        - cardInPlay1 and cardInPlay2 variables reset
+        - player names updated (see stretch goals for player names)
+    - Update the display by calling render()
+        - console.log that game has started
+
+* initiateWar logic:
+    - clicking fight button pushes last item from player array into cardInPlay variable, which is displayed 
+
+* checkCards logic:
+    - if cardInPlay1 > cardInPlay2 display "Player1 wins" and add score to player1
+    - if cardInPlay1 < cardInPlay2 display "Player2 wins" and add score to player2
+    - if cardInPlay1 === cardInPlay2 display "Tie" and no changes to score (see stretch goals for ties)
+    - game arena stays as is until user refreshes page (resets game?) or hits fight button to initiateWar
+
+* getWinner logic:
+    - once arrays are empty, compare player1 score and player2 score
+    - if player1 score > player2 score => display "Player1 wins!"
+    - if player1 score < player2 score => display "Player2 wins!"
+    - if player1 score = player2 score => display "tie game!"
+    - remove fight button and display "Play again" button that loadsGame()
+
+* Stretch goals:
+    Player Names: 
+    - generate random "enemy" names for each game  (i.e. Luke Skywalker vs. Darth Vadar)
+
+    Tie:
+    - in getWinner logic...when cardInPlay1 === cardInPlay2, 3 cards pushed into playerTie1 & 2 arrays from players respective array
+    - fourth card is pushed to cardInPlay1 & 2 and getWinner logic run again
+
+    Cards:
+    - use custom cards 
