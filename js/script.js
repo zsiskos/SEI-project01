@@ -94,13 +94,6 @@ document.getElementById('reset').addEventListener('click', resetGame)
 // createBoard();
 
 //Game play
-// * initiateWar logic:
-//	- it takes the imgUrl and updates the img in the HTML to show the card
-//	- it takes the values and compares them
-// - it checks the the array length 
-	//	- if not 0 then does nothing)
-	// - if 0 then initiates checkWinner
-
 let playerOneScore = 0;
 let playerTwoScore = 0;
 
@@ -118,9 +111,7 @@ function initiateWar() {
 	let cardTwoElement = document.getElementById('player2Card');
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
 	//compare values to award points
-
 	if (playerOneCard.rank > playerTwoCard.rank) {
-		// return playerOneScore += 1;
 		playerOneScore += 1
 		console.log("player1 wins")
 	} else if (playerOneCard.rank < playerTwoCard.rank) {
@@ -131,11 +122,18 @@ function initiateWar() {
 	}
 	console.log(playerOneScore)
 	console.log(playerTwoScore)
+	// check if there are any cards left to play
+	if (playerDecks[1].length === 0) {
+		console.log('time to check winner')
+		checkWinner();
+	}
 };
 
-	
+function checkWinner() {
+	console.log('winner checked!')
+}
 
-	// check if there are any cards left to play
+	
 
  
 
