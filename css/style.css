@@ -60,31 +60,29 @@ main {
    justify-content: space-around;
    width: auto;
    margin: auto;
+   padding: 10px;
 }
 
 img {
     display: flex;
-    margin: 40px 8px 0;
     border: 1px solid black;
     border-radius: 5%;
     max-width: 100%;
     height: auto;
 }
 
+
 .tie-arena {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-around;
-    align-content: center;
+    align-content: space-between;
     width: auto;
-    max-width: 750%;
+    max-width: 750px;
     margin: auto;
     border: 1px solid red;
-    padding: 10px;
 }
 
-div.tie-arena > img {
-   display: inline-flex;
+.tie-arena img {
    max-width: 100%;
    height: auto;
    object-fit: contain;
