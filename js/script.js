@@ -102,6 +102,12 @@ function initiateWar() {
 	} else {
 		return goToWar();
 	}
+	// check if there are any cards left to play
+	if (playerDecks[1].length === 0) {
+		console.log('time to check winner')
+		fight.remove();
+		checkWinner();
+	}
 }
 
 //displays points on screen
@@ -112,12 +118,7 @@ function updateScore() {
 	playerTwoScoreEl.innerText = playerTwoScore
 };
 
-// // check if there are any cards left to play
-// if (playerDecks[1].length === 0) {
-// 	console.log('time to check winner')
-// 	fight.remove();
-// 	checkWinner();
-// }
+
 
 		//tie function to go to war
 		// change header to "go to war" in red, and display tie arena, change button to read "go to war" IS THIS NEEDED?
