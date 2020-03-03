@@ -62,8 +62,8 @@ console.log(deck)
 console.log(playerDecks)
 
 //cached references
-fight = document.getElementById('fight')
-playAgain = document.getElementById('reset')
+let fight = document.getElementById('fight')
+let playAgain = document.getElementById('reset')
 
 //event listeners
 fight.addEventListener('click', initiateWar)
@@ -87,6 +87,7 @@ function initiateWar() {
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
 	compareCards(playerOneCard, playerTwoCard);
 }	
+
 //Compares cards to see who wins that battle
 function compareCards(a, b) {
 	if (a.rank > b.rank) {
@@ -103,8 +104,12 @@ function compareCards(a, b) {
 		playerTwoScore = playerDecks[-1].length
 		updateScore();
 	} else {
+		let titleEl = document.querySelector('h1');
+		titleEl.innerText = "Go to WAR!!!";
+		titleEl.style.color = "red";
 		return goToWar();
 	}
+
 	// check if there are any cards left to play
 	if (playerDecks[1].length === 0) {
 		console.log('time to check winner')
@@ -168,9 +173,7 @@ function goToWar() {
 	let playerTwoTie3El = document.getElementById('player2tie3');
 	playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl);
 }	
-	
-// 	//change to show image related to card above
-	
+		
 	
 	
 // 	let cardTwoElement = document.getElementById('player2Card');
