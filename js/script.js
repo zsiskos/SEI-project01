@@ -85,17 +85,20 @@ function initiateWar() {
 	cardOneElement.setAttribute('src', playerOneCard.imgUrl);
 	let cardTwoElement = document.getElementById('player2Card');
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
-	//Winning player keeps both cards NEW FEATURE
-	if (playerOneCard.rank > playerTwoCard.rank) {
-		playerDecks[1].push(playerTwoCard)
-		playerDecks[1].push(playerOneCard)
+	compareCards(playerOneCard, playerTwoCard);
+}	
+//Compares cards to see who wins that battle
+function compareCards(a, b) {
+	if (a.rank > b.rank) {
+		playerDecks[1].push(b)
+		playerDecks[1].push(a)
 		playerOneScore = playerDecks[1].length
 		playerTwoScore = playerDecks[-1].length
 		updateScore();
 		console.log("player1 pt")
-	} else if (playerOneCard.rank < playerTwoCard.rank) {
-		playerDecks[-1].push(playerTwoCard)
-		playerDecks[-1].push(playerOneCard)
+	} else if (a.rank < b.rank) {
+		playerDecks[-1].push(b)
+		playerDecks[-1].push(a)
 		playerOneScore = playerDecks[1].length
 		playerTwoScore = playerDecks[-1].length
 		updateScore();
