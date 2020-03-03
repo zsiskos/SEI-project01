@@ -29,12 +29,12 @@ class Deck {
 // game state variables
 let deck = []
 let playerDecks = {
-    '1': [],
-    '-1': []
+	'1': [],
+	'-1': []
 }
 let playerOneScore = playerDecks[1].length;
 let playerTwoScore = playerDecks[-1].length;
-let cardsInPlay = [];
+let tieCards = [];
 
 //cached references
 	//Game board
@@ -57,7 +57,7 @@ let playerTwoTie3El = document.getElementById('player2tie3');
 
 //event listeners
 fightEl.addEventListener('click', initiateWar)
-playAgainEl.addEventListener('click', resetGame)
+playAgainEl.addEventListener('click', init)
 
 
 //Functions
@@ -65,7 +65,12 @@ playAgainEl.addEventListener('click', resetGame)
 init()
 
 function init() {
-//Creates the deck
+	playerDecks = {
+		'1': [],
+		'-1': []
+	}
+	deck = []
+	//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
 			deck.push(new Deck(suit, val))
@@ -95,9 +100,7 @@ function splitDeck() {
         player *= -1
     }
 }
-
 //Game play
-
 function initiateWar() {
 	//get card from playerDecks for each player
 	let playerOneCard = playerDecks[1].shift()
@@ -113,13 +116,15 @@ function compareCards(play1, play2) {
 	if (play1.rank > play2.rank) {
 		playerDecks[1].push(play1)
 		playerDecks[1].push(play2)
+		// playerDecks[1].push(tieCards)
 		updateScore();
 	} else if (play1.rank < play2.rank) {
 		playerDecks[-1].push(play1)
 		playerDecks[-1].push(play2)
+		// playerDecks[-1].push(tieCards)
 		updateScore();
 	} else {
-		titleEl.innerText = "Go to WAR!!!";
+		titleEl.innerText = "Go to WAR!";
 		titleEl.style.color = "red";
 		tieArena.style.display = 'flex';
 		return goToWar();
@@ -131,6 +136,7 @@ function compareCards(play1, play2) {
 		checkWinner();
 	}
 }
+
 //displays points on screen
 function updateScore() {
 	playerOneScore = playerDecks[1].length
@@ -164,9 +170,10 @@ function goToWar() {
 	playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl);
 	playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl);
 
-	//NEED TO:
-	//insert tie battle area - toggle?
-	//check winner and push all cards to winner array
+	//Put tie cards in array for checkScore
+	// tieCards.push(playerOneTie1, playerOneTie2, playerOneTie3, playerTwoTie1, playerTwoTie2, playerTwoTie3)
+	// 	console.log(tieCards)
+	// return tieCards;
 	//revert header back to normal
 	//remove tie battle arena
 }	
@@ -188,27 +195,27 @@ function resetGame() {
 	console.log('reset')
 }
 
+// NEED TO WORK ON RENDER
+// function render() {
+// 	// show either card backs or current war cards
+// 	let card1 = warCards['1']
+// 	player1CardEl.src = card1 ? card1.imgUrl : "images/backs/blue.svg"
 
-function render() {
-	// show either card backs or current war cards
-	let card1 = warCards['1']
-	player1CardEl.src = card1 ? card1.imgUrl : "images/backs/blue.svg"
+// 	let card2 = warCards['-1']
+// 	player2CardEl.src = card2 ? card2.imgUrl : "images/backs/blue.svg"
 
-	let card2 = warCards['-1']
-	player2CardEl.src = card2 ? card2.imgUrl : "images/backs/blue.svg"
+// 	// show player score
+// 	playerOneScoreEl.innerHTML = score1
+// 	playerTwoScoreEl.innerHTML = score2
 
-	// show player score
-	playerOneScoreEl.innerHTML = score1
-	playerTwoScoreEl.innerHTML = score2
+// 	// if "isTie", shows tie cards as well
+// 		// show the tieCards
 
-	// if "isTie", shows tie cards as well
-		// show the tieCards
+// 	// if not
+// 		// hide the tieCards
 
-	// if not
-		// hide the tieCards
-
-	// winner
-}
+// 	// winner
+// }
 
 
 
