@@ -91,16 +91,34 @@ function initiateWar() {
 		playerDecks[1].push(playerOneCard)
 		playerOneScore = playerDecks[1].length
 		playerTwoScore = playerDecks[-1].length
+		updateScore();
 		console.log("player1 pt")
 	} else if (playerOneCard.rank < playerTwoCard.rank) {
 		playerDecks[-1].push(playerTwoCard)
 		playerDecks[-1].push(playerOneCard)
 		playerOneScore = playerDecks[1].length
 		playerTwoScore = playerDecks[-1].length
+		updateScore();
 	} else {
 		return goToWar();
 	}
 }
+
+//displays points on screen
+function updateScore() {
+	let playerOneScoreEl = document.getElementById('score1');
+	playerOneScoreEl.innerText = playerOneScore
+	let playerTwoScoreEl = document.getElementById('score2');
+	playerTwoScoreEl.innerText = playerTwoScore
+};
+
+// // check if there are any cards left to play
+// if (playerDecks[1].length === 0) {
+// 	console.log('time to check winner')
+// 	fight.remove();
+// 	checkWinner();
+// }
+
 		//tie function to go to war
 		// change header to "go to war" in red, and display tie arena, change button to read "go to war" IS THIS NEEDED?
 		// if doin button, then player must hit to activate
@@ -182,18 +200,7 @@ function goToWar() {
 // 	} else {
 // 		console.log("tie")
 // 	}
-// 	//displays points on screen
-// 	let playerOneScoreEl = document.getElementById('score1');
-// 	playerOneScoreEl.innerText = playerOneScore
-// 	let playerTwoScoreEl = document.getElementById('score2');
-// 	playerTwoScoreEl.innerText = playerTwoScore
-// 	// check if there are any cards left to play
-// 	if (playerDecks[1].length === 0) {
-// 		console.log('time to check winner')
-// 		fight.remove();
-// 		checkWinner();
-// 	}
-// };
+
 
 //Comparing scores to find a winner
 function checkWinner() {
