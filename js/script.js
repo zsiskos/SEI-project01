@@ -85,6 +85,22 @@ function initiateWar() {
 	cardOneElement.setAttribute('src', playerOneCard.imgUrl);
 	let cardTwoElement = document.getElementById('player2Card');
 	cardTwoElement.setAttribute('src', playerTwoCard.imgUrl);
+	// //Winning player keeps both cards
+	// if (playerOneCard.rank > playerTwoCard.rank) {
+	// 	playerDecks[1].push(playerTwoCard)
+	// 	playerDecks[1].push(playerOneCard)
+	// 	playerOneScore = playerDecks[1].length
+	// 	playerTwoScore = playerDecks[-1].length
+	// 	console.log("player1 pt")
+	// } else if (playerOneCard.rank < playerTwoCard.rank) {
+	// 	playerDecks[-1].push(playerTwoCard)
+	// 	playerDecks[-1].push(playerOneCard)
+	// 	playerOneScore = playerDecks[1].length
+	// 	playerTwoScore = playerDecks[-1].length
+	// } else {
+	// 	console.log("tie")
+	// }
+
 	//compare values to award points
 	if (playerOneCard.rank > playerTwoCard.rank) {
 		playerOneScore += 1
@@ -115,8 +131,8 @@ function checkWinner() {
 	} else if (playerOneScore < playerTwoScore) {
 		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player2`)
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player2`)
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 2`)
 	}
 }
 
