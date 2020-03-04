@@ -33,11 +33,18 @@ let playerDecks = {
 	'-1': []
 }
 let cardsInPlay = [];
-let playerOneCard;
-let playerTwoCard;
+let playerOneCard, playerOneTie1, playerOneTie2, playerOneTie3
+let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
 let winner;
 let isTie;
+let isTieDeal;
 let inPlay;
+		playerOneTie1 = playerDecks[1].shift()
+		playerOneTie2 = playerDecks[1].shift()
+		playerOneTie3 = playerDecks[1].shift() 
+		playerTwoTie1 = playerDecks[-1].shift()
+		playerTwoTie2 = playerDecks[-1].shift()
+		playerTwoTie3 = playerDecks[-1].shift()
 
 //cached references
 	//Game board
@@ -51,7 +58,7 @@ let cardOneElement = document.getElementById('player1Card');
 let cardTwoElement = document.getElementById('player2Card');
 let playerOneScoreEl = document.getElementById('score1');
 let playerTwoScoreEl = document.getElementById('score2');
-let playerOnetie1El = document.getElementById('player1tie1');
+let playerOneTie1El = document.getElementById('player1tie1');
 let playerOneTie2El = document.getElementById('player1tie2');
 let playerOneTie3El = document.getElementById('player1tie3');
 let playerTwoTie1El = document.getElementById('player2tie1');
@@ -78,7 +85,7 @@ function init() {
 	}
 	cardsInPlay = []
 	isTie = false
-
+	isTieDeal = false
 	//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
@@ -114,17 +121,18 @@ function initiateWar() {
 		playerTwoCard = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerTwoCard)
 	} else if (isTie) {
+		isTieDeal = true
 		playerOneCard = playerDecks[1].shift()
-		let playerOneTie1 = playerDecks[1].shift()
-		let playerOneTie2 = playerDecks[1].shift()
-		let playerOneTie3 = playerDecks[1].shift() 
+		playerOneTie1 = playerDecks[1].shift()
+		playerOneTie2 = playerDecks[1].shift()
+		playerOneTie3 = playerDecks[1].shift() 
 		playerTwoCard = playerDecks[-1].shift()
-		let playerTwoTie1 = playerDecks[-1].shift()
-		let playerTwoTie2 = playerDecks[-1].shift()
-		let playerTwoTie3 = playerDecks[-1].shift()
+		playerTwoTie1 = playerDecks[-1].shift()
+		playerTwoTie2 = playerDecks[-1].shift()
+		playerTwoTie3 = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerOneTie1,playerOneTie2, playerOneTie3, playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3)
-		console.log(cardsInPlay)
-	}
+		console.log(cardsInPlay) 	
+	} 
 	compareCards(playerOneCard,playerTwoCard)
 	render()
 }	
@@ -134,11 +142,10 @@ function compareCards(play1, play2) {
 	console.log("checking")
 	if (play1.rank > play2.rank) {
 		cardsInPlay.forEach(function(card) {
-			playerDecks[1].push(card)
-			
+			playerDecks[1].push(card)	
 		})
 		cardsInPlay = []
-		isTie = false
+		isTie = false	
 	} else if (play1.rank < play2.rank) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[-1].push(card)
@@ -147,12 +154,11 @@ function compareCards(play1, play2) {
 		isTie = false
 	} else {
 		isTie = true
+		
 
 	}
-	
 	console.log(cardsInPlay)
 	console.log(playerDecks)
-
 	// check if there are any cards left to play
 	if (playerDecks[1].length === 0) {
 		console.log('time to check winner')
@@ -160,25 +166,6 @@ function compareCards(play1, play2) {
 		checkWinner();
 	}
 }
-
-
-
-// function goToWar() {
-// 	//get card from playerDecks for player1
-// 	let playerOneCard = playerDecks[1].shift()
-// 	let playerOneTie1 = playerDecks[1].shift()
-// 	let playerOneTie2 = playerDecks[1].shift()
-// 	let playerOneTie3 = playerDecks[1].shift()
-
-// 	//get card from playerDecks for player2
-// 	let playerTwoCard = playerDecks[-1].shift()
-// 	let playerTwoTie1 = playerDecks[-1].shift()
-// 	let playerTwoTie2 = playerDecks[-1].shift()
-// 	let playerTwoTie3 = playerDecks[-1].shift()
-
-// 	//player 1 change to show image related to card above
-// 	cardOneElement.setAttribute('src', playerOneCard.imgUrl);
-// 	playerOnetie1El.setAttribute('src', playerOneTie1.imgUrl);
 //     playerOneTie2El.setAttribute('src', playerOneTie2.imgUrl);
 // 	playerOneTie3El.setAttribute('src', playerOneTie3.imgUrl);
 
@@ -188,13 +175,6 @@ function compareCards(play1, play2) {
 // 	playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl);
 // 	playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl);
 
-	//Put tie cards in array for checkScore
-	// tieCards.push(playerOneTie1, playerOneTie2, playerOneTie3, playerTwoTie1, playerTwoTie2, playerTwoTie3)
-	// 	console.log(tieCards)
-	// return tieCards;
-	//revert header back to normal
-	//remove tie battle arena
-// }	
 
 //Comparing scores to find a winner
 function checkWinner() {
@@ -216,6 +196,14 @@ function render() {
 	//change card based on playercards
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
+	if (isTieDeal) {
+		playerOneTie1El.setAttribute('src', playerOneTie1.imgUrl)
+		playerOneTie2El.setAttribute('src', playerOneTie2.imgUrl)
+		playerOneTie3El.setAttribute('src', playerOneTie3.imgUrl)
+		playerTwoTie1El.setAttribute('src', playerTwoTie1.imgUrl)
+		playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl)
+		playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl)
+	}
 	//change score based on length of player array
 	playerOneScoreEl.innerHTML = playerDecks[1].length
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
