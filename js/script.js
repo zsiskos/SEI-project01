@@ -92,7 +92,6 @@ function init() {
 	render()
 }
 
-
 //Splits deck randomly into two decks for players
 function splitDeck() {
     let player = 1
@@ -106,9 +105,9 @@ function splitDeck() {
         player *= -1
     }
 }
-//Game play
+
+//Game play, when FIGHT is clicked
 function initiateWar() {
-	console.log("works")
 	inPlay = true
 	//if not a tie, then shift cards from playerDecks to cards in play
 	if (!isTie) {
@@ -130,12 +129,16 @@ function compareCards(play1, play2) {
 			playerDecks[1].push(card)
 			
 		})
+		cardsInPlay = []
 	} else if (play1.rank < play2.rank) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[-1].push(card)
 		})
-	} 
-	cardsInPlay = []
+		cardsInPlay = []
+	} else {
+		isTie = true
+	}
+	
 	console.log(cardsInPlay)
 	console.log(playerDecks)
 
@@ -209,7 +212,7 @@ function render() {
 	//change board based on tieInPlay
 	if (!isTie) {
 		tieArena.style.display = 'none';
-	} else {
+	} else if (isTie) {
 		titleEl.innerText = "Go to WAR!";
 		titleEl.style.color = "red";
 		tieArena.style.display = 'flex'
