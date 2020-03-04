@@ -59,7 +59,7 @@ main {
    align-self: center;
    justify-content: space-around;
    width: auto;
-   margin: auto;
+   margin: 20px auto 0px auto;
    padding: 10px;
 }
 
