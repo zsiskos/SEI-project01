@@ -32,6 +32,7 @@ nav {
 
 #instructions {
     color: #E9E9EA;
+    background-color: #4C608F;
     font-size: 20px;
     text-align: center;
     border-left: 1px solid #172C5B;
@@ -68,6 +69,7 @@ p {
     margin: 10px 0 0 0;
     text-align: center;
     font-size: 20px;
+    color: #172C5B;
 }
 
 #score1,
@@ -128,21 +130,23 @@ img {
 	border-radius: 12px;
 }
 
-#instructions {
+footer p {
     display: flex;
-    background-color: #4C608F;
-
-}
-
-iframe {
-    padding: 20px;
-   
-}
-
-footer {
-    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     height: 75px;
     background-color: #07173D;
+    color: #7585AB;
+}
+
+footer img {
+    margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #7585AB;
 }
 
 /* The Modal (background) */
