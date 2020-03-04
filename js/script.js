@@ -125,11 +125,12 @@ function initiateWar() {
 		playerTwoTie3 = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerOneTie1, playerOneTie2, playerOneTie3, playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3)
 		console.log(cardsInPlay)
-		renderTieCards()			
+		renderTieCards()
 	} 
 	compareCards(playerOneCard, playerTwoCard)
 	render()
-}	
+}
+
 
 //Compares cards to see who wins that battle
 function compareCards(play1, play2) {
