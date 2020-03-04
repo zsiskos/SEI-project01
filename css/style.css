@@ -45,6 +45,8 @@ p {
 #score1,
 #score2 {
     font-size: 88px;
+    font-family: 'Bowlby One SC';
+    color: #172C5B;
 }
 
 nav {
@@ -52,6 +54,18 @@ nav {
     width: auto;
     height: 50px;
     background-color: #4C608F;
+    justify-content: center;
+    align-content: center;
+}
+
+a {
+    color: #E9E9EA;
+    text-align: center;
+    text-decoration: none;
+    border-left: 1px solid #172C5B;
+    border-right: 1px solid #172C5B;
+    padding: 15px;
+    font-family: 'Bowlby One SC'
 }
 
 main {
