@@ -109,13 +109,21 @@ function splitDeck() {
 //Game play, when FIGHT is clicked
 function initiateWar() {
 	inPlay = true
-	//if not a tie, then shift cards from playerDecks to cards in play
 	if (!isTie) {
 		playerOneCard = playerDecks[1].shift()
 		playerTwoCard = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerTwoCard)
 	} else if (isTie) {
-
+		playerOneCard = playerDecks[1].shift()
+		let playerOneTie1 = playerDecks[1].shift()
+		let playerOneTie2 = playerDecks[1].shift()
+		let playerOneTie3 = playerDecks[1].shift() 
+		playerTwoCard = playerDecks[-1].shift()
+		let playerTwoTie1 = playerDecks[-1].shift()
+		let playerTwoTie2 = playerDecks[-1].shift()
+		let playerTwoTie3 = playerDecks[-1].shift()
+		cardsInPlay.unshift(playerOneCard, playerOneTie1,playerOneTie2, playerOneTie3, playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3)
+		console.log(cardsInPlay)
 	}
 	compareCards(playerOneCard,playerTwoCard)
 	render()
@@ -130,13 +138,16 @@ function compareCards(play1, play2) {
 			
 		})
 		cardsInPlay = []
+		isTie = false
 	} else if (play1.rank < play2.rank) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[-1].push(card)
 		})
 		cardsInPlay = []
+		isTie = false
 	} else {
 		isTie = true
+
 	}
 	
 	console.log(cardsInPlay)
@@ -200,7 +211,6 @@ function checkWinner() {
 function resetGame() {
 	console.log('reset')
 }
-
 
 function render() {
 	//change card based on playercards
