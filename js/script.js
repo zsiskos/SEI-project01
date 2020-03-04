@@ -117,23 +117,30 @@ function initiateWar() {
 		playerOneCard = playerDecks[1].shift()
 		playerTwoCard = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerTwoCard)
-	} else if (isTie)
-	
-	compareCards(playerOneCard, playerTwoCard);
+	} else if (isTie) {
+
+	}
+	compareCards(playerOneCard,playerTwoCard)
 	render()
 }	
 
 //Compares cards to see who wins that battle
 function compareCards(play1, play2) {
+	console.log("checking")
 	if (play1.rank > play2.rank) {
-		//cardsInPlay unshift to playerDecks[1]
+		cardsInPlay.forEach(function(card) {
+			playerDecks[1].push(card)
+			
+		})
 	} else if (play1.rank < play2.rank) {
-		//cardsInPlay unshift to playerDecks[-1]
-	} else {
-	
-	
-		return goToWar();
-	}
+		cardsInPlay.forEach(function(card) {
+			playerDecks[-1].push(card)
+		})
+	} 
+	cardsInPlay = []
+	console.log(cardsInPlay)
+	console.log(playerDecks)
+
 	// check if there are any cards left to play
 	if (playerDecks[1].length === 0) {
 		console.log('time to check winner')
@@ -141,6 +148,7 @@ function compareCards(play1, play2) {
 		checkWinner();
 	}
 }
+
 
 //displays points on screen
 function updateScore() {
