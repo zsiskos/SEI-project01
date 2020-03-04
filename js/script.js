@@ -228,14 +228,15 @@ function render() {
 
 	//show winner based on winner
 		//player one wins
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
+		if (winner === 1) {
+			document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
+		} else if (winner === -1) {
+			document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
+		} else if (winner === 2) {
+			document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
+			document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
+		}
 
-		//player two wins
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
-
-		//tie
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
 }
 
 
