@@ -32,12 +32,14 @@ let playerDecks = {
 	'1': [],
 	'-1': []
 }
+let cardsInPlay = [];
 let playerOneScore = playerDecks[1].length;
 let playerTwoScore = playerDecks[-1].length;
-let cardsInPlay = [];
-let playerOneCard = cardsInPlay[1]
-let playerTwoCard = cardsInPlay[0]
-
+let playerOneCard = cardsInPlay[1];
+let playerTwoCard = cardsInPlay[0];
+let winner;
+let isTie;
+let inPlay;
 
 //cached references
 	//Game board
@@ -68,25 +70,28 @@ playAgainEl.addEventListener('click', init)
 init()
 
 function init() {
+	//sets game state to normal
+	inPlay = false
+	winner = false
 	deck = []
 	playerDecks = {
 		'1': [],
 		'-1': []
 	}
+	cardsInPlay = []
+	isTie = false
+
 	//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
 			deck.push(new Deck(suit, val))
 		})
 	})
+	//deals cards to players
 	splitDeck()
 	console.log(deck)
 	console.log(playerDecks)
-	updateScore()
-	//hides tie arena
-	tieArena.style.display = 'none';
-	
-	// render()
+	render()
 }
 
 
@@ -105,6 +110,13 @@ function splitDeck() {
 }
 //Game play
 function initiateWar() {
+	//if not a tie, then shift cards from playerDecks to cards in play
+	if (!isTie) {
+		cardsInPlay = playerDecks[1].shift()
+		cardsInPlay = playerDecks[-1].shift()
+	}
+
+
 	//get card from playerDecks for each player
 	let playerOneCard = playerDecks[1].shift()
 	let playerTwoCard = playerDecks[-1].shift()
@@ -184,12 +196,11 @@ function goToWar() {
 //Comparing scores to find a winner
 function checkWinner() {
 	if (playerOneScore > playerTwoScore) {
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
+		
 	} else if (playerOneScore < playerTwoScore) {
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
+		
 	} else {
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
+		
 	}
 }
 
@@ -200,24 +211,31 @@ function resetGame() {
 
 // NEED TO WORK ON RENDER
 function render() {
-	// show either card backs or current war cards
-	let card1 = warCards['1']
-	player1CardEl.src = card1 ? card1.imgUrl : "images/backs/blue.svg"
+	//change card based on playercards
+	
+	cardOneElement.src = inPlay ? cardsInPlay[0].imgUrl : "images/backs/blue.svg"
+	cardTwoElement.src = inPlay ? cardsInPlay[1].imgUrl : "images/backs/blue.svg"
 
-	let card2 = warCards['-1']
-	player2CardEl.src = card2 ? card2.imgUrl : "images/backs/blue.svg"
+	//change score based on length of player array
+	playerOneScoreEl.innerHTML = playerOneScore
+	playerTwoScoreEl.innerHTML = playerTwoScore
+	//change board based on tieInPlay
+	if (!isTie) {
+		tieArena.style.display = 'none';
+	} else {
+		tieArena.style.display = 'flex'
+	}
 
-	// show player score
-	playerOneScoreEl.innerHTML = score1
-	playerTwoScoreEl.innerHTML = score2
+	//show winner based on winner
+		//player one wins
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
 
-	// if "isTie", shows tie cards as well
-		// show the tieCards
+		//player two wins
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 
-	// if not
-		// hide the tieCards
-
-	// winner
+		//tie
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
 }
 
 
