@@ -139,9 +139,8 @@ function compareCards(play1, play2) {
 		// playerDecks[-1].push(tieCards)
 		updateScore();
 	} else {
-		titleEl.innerText = "Go to WAR!";
-		titleEl.style.color = "red";
-		tieArena.style.display = 'flex';
+	
+	
 		return goToWar();
 	}
 	// check if there are any cards left to play
@@ -196,11 +195,11 @@ function goToWar() {
 //Comparing scores to find a winner
 function checkWinner() {
 	if (playerOneScore > playerTwoScore) {
-		
+		winner = 1
 	} else if (playerOneScore < playerTwoScore) {
-		
+		winner = -1
 	} else {
-		
+		winner = 2
 	}
 }
 
@@ -209,13 +208,11 @@ function resetGame() {
 	console.log('reset')
 }
 
-// NEED TO WORK ON RENDER
+
 function render() {
 	//change card based on playercards
-	
 	cardOneElement.src = inPlay ? cardsInPlay[0].imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? cardsInPlay[1].imgUrl : "images/backs/blue.svg"
-
 	//change score based on length of player array
 	playerOneScoreEl.innerHTML = playerOneScore
 	playerTwoScoreEl.innerHTML = playerTwoScore
@@ -223,8 +220,12 @@ function render() {
 	if (!isTie) {
 		tieArena.style.display = 'none';
 	} else {
+		titleEl.innerText = "Go to WAR!";
+		titleEl.style.color = "red";
 		tieArena.style.display = 'flex'
+
 	}
+
 
 	//show winner based on winner
 		//player one wins
