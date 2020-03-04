@@ -1,5 +1,11 @@
 //Constant variables/obj
 const SUITS = ['hearts', 'diamonds', 'clubs', 'spades']
+const SUITRANK = {
+	'hearts': 01,
+	'diamonds': 02,
+	'clubs': 03,
+	'spades': 04
+}
 const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const RANKS = {
     '2': 02,
@@ -19,9 +25,10 @@ const RANKS = {
 
 class Deck {
     constructor(suit, value) {
-        this.suit = suit;
+		this.suit = suit;
+		this.suitrank = SUITRANK[suit];
         this.value = value;
-        this.imgUrl = `./images/${suit}/${suit}-${value}.svg`
+        this.imgUrl = `./images/${suit}/${suit}-${value}.svg`;
         this.rank = RANKS[value]
     }
 }
@@ -64,7 +71,6 @@ playAgainEl.addEventListener('click', init)
 
 
 //Functions
-
 init()
 
 function init() {
@@ -127,7 +133,7 @@ function initiateWar() {
 		console.log(cardsInPlay)
 		renderTieCards()
 	} 
-	compareCards(playerOneCard, playerTwoCard)
+	compareCards(playerOneCard.rank, playerTwoCard.rank)
 	render()
 }
 
@@ -135,26 +141,31 @@ function initiateWar() {
 //Compares cards to see who wins that battle
 function compareCards(play1, play2) {
 	console.log("checking")
-	if (play1.rank > play2.rank) {
+	if (play1 > play2) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[1].push(card)	
 		})
 		cardsInPlay = []
 		isTie = false
-	} else if (play1.rank < play2.rank) {
+	} else if (play1 < play2) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[-1].push(card)
 		})
 		cardsInPlay = []
 		isTie = false
 	} else {
-		isTie = true
-		renderTieArena()
+		if (playerDecks[1].length < 5 || playerDecks[-1].length < 5) {
+			compareCards(playerOneCard.suitrank, playerTwoCard.suitrank)
+		} else {
+			isTie = true
+			renderTieArena()
+		}
 	}  
 	console.log(cardsInPlay)
 	console.log(playerDecks)
 	// check if there are any cards left to play
-	if (playerDecks[1].length === 0) {
+	
+	if (playerDecks[1].length === 0 || playerDecks[-1].length === 0) {
 		console.log('time to check winner')
 		fight.remove();
 		checkWinner();
@@ -162,14 +173,14 @@ function compareCards(play1, play2) {
 }
 
 
+
 //Comparing final scores to find a winner
 function checkWinner() {
-	if (playerOneScore > playerTwoScore) {
+	if (playerDecks[1].length > playerDecks[-1].length) {
 		winner = 1
-	} else if (playerOneScore < playerTwoScore) {
-		winner = -1
 	} else {
-		winner = 2
+		winner = -1
+	render();
 	}
 }
 
@@ -186,17 +197,14 @@ function render() {
 	playerOneScoreEl.innerHTML = playerDecks[1].length
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
 	//show winner based on winner
-		//player one wins
-		if (winner === 1) {
-			document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
-		} else if (winner === -1) {
-			document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
-		} else if (winner === 2) {
-			document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
-			document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
-		}
-	//change board for tie
-
+	if (winner === 1) {
+		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
+	} else if (winner === -1) {
+		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
+	} else {
+		document.getElementById('p1Name').innerHTML = "Player 1"
+		document.getElementById('p2Name').innerHTML = "Player 2"
+	}
 }
 
 function renderTieCards() {
@@ -225,40 +233,3 @@ function renderTieArena () {
 	playerTwoTie3El.setAttribute('src', "images/backs/blue.svg")
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
