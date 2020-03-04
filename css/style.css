@@ -63,6 +63,10 @@ main {
    padding: 10px;
 }
 
+.player {
+    margin: 10px;
+}
+
 img {
     display: flex;
     border: 1px solid black;
@@ -79,7 +83,6 @@ img {
     width: auto;
     max-width: 750px;
     margin: auto;
-    border: 1px solid red;
 }
 
 .tie-arena img {
