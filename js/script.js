@@ -34,7 +34,10 @@ let playerDecks = {
 }
 let playerOneScore = playerDecks[1].length;
 let playerTwoScore = playerDecks[-1].length;
-let tieCards = [];
+let cardsInPlay = [];
+let playerOneCard = cardsInPlay[1]
+let playerTwoCard = cardsInPlay[0]
+
 
 //cached references
 	//Game board
@@ -65,11 +68,11 @@ playAgainEl.addEventListener('click', init)
 init()
 
 function init() {
+	deck = []
 	playerDecks = {
 		'1': [],
 		'-1': []
 	}
-	deck = []
 	//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
@@ -196,26 +199,26 @@ function resetGame() {
 }
 
 // NEED TO WORK ON RENDER
-// function render() {
-// 	// show either card backs or current war cards
-// 	let card1 = warCards['1']
-// 	player1CardEl.src = card1 ? card1.imgUrl : "images/backs/blue.svg"
+function render() {
+	// show either card backs or current war cards
+	let card1 = warCards['1']
+	player1CardEl.src = card1 ? card1.imgUrl : "images/backs/blue.svg"
 
-// 	let card2 = warCards['-1']
-// 	player2CardEl.src = card2 ? card2.imgUrl : "images/backs/blue.svg"
+	let card2 = warCards['-1']
+	player2CardEl.src = card2 ? card2.imgUrl : "images/backs/blue.svg"
 
-// 	// show player score
-// 	playerOneScoreEl.innerHTML = score1
-// 	playerTwoScoreEl.innerHTML = score2
+	// show player score
+	playerOneScoreEl.innerHTML = score1
+	playerTwoScoreEl.innerHTML = score2
 
-// 	// if "isTie", shows tie cards as well
-// 		// show the tieCards
+	// if "isTie", shows tie cards as well
+		// show the tieCards
 
-// 	// if not
-// 		// hide the tieCards
+	// if not
+		// hide the tieCards
 
-// 	// winner
-// }
+	// winner
+}
 
 
 
