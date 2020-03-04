@@ -167,7 +167,6 @@ function compareCards(play1, play2) {
 	
 	if (playerDecks[1].length === 0 || playerDecks[-1].length === 0) {
 		console.log('time to check winner')
-		fight.remove();
 		checkWinner();
 	}
 }
@@ -180,8 +179,8 @@ function checkWinner() {
 		winner = 1
 	} else {
 		winner = -1
-	render();
 	}
+	render();
 }
 
 //click button to reset game
@@ -198,12 +197,16 @@ function render() {
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
 	//show winner based on winner
 	if (winner === 1) {
+		fightEl.style.visibility = 'hidden'
 		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else if (winner === -1) {
+		fightEl.style.visibility = 'hidden'
 		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
 		document.getElementById('p1Name').innerHTML = "Player 1"
 		document.getElementById('p2Name').innerHTML = "Player 2"
+		fightEl.style.visibility = 'visible'
+		
 	}
 }
 
