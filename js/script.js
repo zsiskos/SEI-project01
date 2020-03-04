@@ -37,14 +37,7 @@ let playerOneCard, playerOneTie1, playerOneTie2, playerOneTie3
 let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
 let winner;
 let isTie;
-let isTieDeal;
 let inPlay;
-		playerOneTie1 = playerDecks[1].shift()
-		playerOneTie2 = playerDecks[1].shift()
-		playerOneTie3 = playerDecks[1].shift() 
-		playerTwoTie1 = playerDecks[-1].shift()
-		playerTwoTie2 = playerDecks[-1].shift()
-		playerTwoTie3 = playerDecks[-1].shift()
 
 //cached references
 	//Game board
@@ -85,7 +78,6 @@ function init() {
 	}
 	cardsInPlay = []
 	isTie = false
-	isTieDeal = false
 	//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
@@ -96,7 +88,7 @@ function init() {
 	splitDeck()
 	console.log(deck)
 	console.log(playerDecks)
-	renderNoMoreTie()
+	renderTieArena()
 	render()
 }
 
@@ -118,12 +110,11 @@ function splitDeck() {
 function initiateWar() {
 	inPlay = true
 	if (!isTie) {
-		renderNoMoreTie()
+		renderTieArena()
 		playerOneCard = playerDecks[1].shift()
 		playerTwoCard = playerDecks[-1].shift()
 		cardsInPlay.unshift(playerOneCard, playerTwoCard)
 	} else if (isTie) {
-		isTieDeal = true
 		playerOneCard = playerDecks[1].shift()
 		playerOneTie1 = playerDecks[1].shift()
 		playerOneTie2 = playerDecks[1].shift()
@@ -132,13 +123,12 @@ function initiateWar() {
 		playerTwoTie1 = playerDecks[-1].shift()
 		playerTwoTie2 = playerDecks[-1].shift()
 		playerTwoTie3 = playerDecks[-1].shift()
-		cardsInPlay.unshift(playerOneCard, playerOneTie1,playerOneTie2, playerOneTie3, playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3)
-		console.log(cardsInPlay)			
+		cardsInPlay.unshift(playerOneCard, playerOneTie1, playerOneTie2, playerOneTie3, playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3)
+		console.log(cardsInPlay)
+		renderTieCards()			
 	} 
-	
-	compareCards(playerOneCard,playerTwoCard)
+	compareCards(playerOneCard, playerTwoCard)
 	render()
-	
 }	
 
 //Compares cards to see who wins that battle
@@ -149,7 +139,7 @@ function compareCards(play1, play2) {
 			playerDecks[1].push(card)	
 		})
 		cardsInPlay = []
-		isTie = false		
+		isTie = false
 	} else if (play1.rank < play2.rank) {
 		cardsInPlay.forEach(function(card) {
 			playerDecks[-1].push(card)
@@ -158,10 +148,8 @@ function compareCards(play1, play2) {
 		isTie = false
 	} else {
 		isTie = true
-		titleEl.innerText = "Go to WAR!";
-		titleEl.style.color = "red";
-		tieArena.style.display = 'flex'
-		}  
+		renderTieArena()
+	}  
 	console.log(cardsInPlay)
 	console.log(playerDecks)
 	// check if there are any cards left to play
@@ -193,19 +181,9 @@ function render() {
 	//change card based on playercards
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
-	if (isTieDeal) {
-		playerOneTie1El.setAttribute('src', playerOneTie1.imgUrl)
-		playerOneTie2El.setAttribute('src', playerOneTie2.imgUrl)
-		playerOneTie3El.setAttribute('src', playerOneTie3.imgUrl)
-		playerTwoTie1El.setAttribute('src', playerTwoTie1.imgUrl)
-		playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl)
-		playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl)
-	}
-	
 	//change score based on length of player array
 	playerOneScoreEl.innerHTML = playerDecks[1].length
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
-
 	//show winner based on winner
 		//player one wins
 		if (winner === 1) {
@@ -216,21 +194,36 @@ function render() {
 			document.getElementById('p1Name').insertAdjacentText("beforeend", ` tied with Player 2`)
 			document.getElementById('p2Name').insertAdjacentText("beforeend", ` tied with Player 1`)
 		}
+	//change board for tie
 
 }
 
-function renderNoMoreTie () {
+function renderTieCards() {
+	playerOneTie1El.setAttribute('src', playerOneTie1.imgUrl)
+	playerOneTie2El.setAttribute('src', playerOneTie2.imgUrl)
+	playerOneTie3El.setAttribute('src', playerOneTie3.imgUrl)
+	playerTwoTie1El.setAttribute('src', playerTwoTie1.imgUrl)
+	playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl)
+	playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl)
+}
+
+function renderTieArena () {
+	if (isTie) {
+		titleEl.innerText = "Go to WAR!";
+		titleEl.style.color = "red";
+		tieArena.style.display = 'flex'
+	} else if (!isTie) {
 	titleEl.innerText = "WAR";
 	titleEl.style.color = "#7585AB";
 	tieArena.style.display = 'none'
-	
-	// playerOneTie1El.setAttribute('src', playerOneTie1.imgUrl)
-	// playerOneTie2El.setAttribute('src', playerOneTie2.imgUrl)
-	// playerOneTie3El.setAttribute('src', playerOneTie3.imgUrl)
-	// playerTwoTie1El.setAttribute('src', playerTwoTie1.imgUrl)
-	// playerTwoTie2El.setAttribute('src', playerTwoTie2.imgUrl)
-	// playerTwoTie3El.setAttribute('src', playerTwoTie3.imgUrl)
+	playerOneTie1El.setAttribute('src', "images/backs/blue.svg")
+	playerOneTie2El.setAttribute('src', "images/backs/blue.svg")
+	playerOneTie3El.setAttribute('src', "images/backs/blue.svg")
+	playerTwoTie1El.setAttribute('src', "images/backs/blue.svg")
+	playerTwoTie2El.setAttribute('src', "images/backs/blue.svg")
+	playerTwoTie3El.setAttribute('src', "images/backs/blue.svg")
 	}
+}
 
 
 
