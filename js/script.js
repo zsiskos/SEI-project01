@@ -154,7 +154,7 @@ function compareCards(play1, play2) {
 		cardsInPlay = []
 		isTie = false
 	} else {
-		if (playerDecks[1].length < 5 || playerDecks[-1].length < 5) {
+		if (playerDecks[1].length < 4 || playerDecks[-1].length < 4) {
 			compareCards(playerOneCard.suitrank, playerTwoCard.suitrank)
 		} else {
 			isTie = true
