@@ -85,7 +85,11 @@ img {
     margin: auto;
 }
 
-.tie-arena img {
+.player-tie {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.player img {
    max-width: 100%;
    height: auto;
    object-fit: contain;
