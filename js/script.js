@@ -33,8 +33,6 @@ let playerDecks = {
 	'-1': []
 }
 let cardsInPlay = [];
-let playerOneScore = playerDecks[1].length;
-let playerTwoScore = playerDecks[-1].length;
 let playerOneCard;
 let playerTwoCard;
 let winner;
@@ -150,13 +148,6 @@ function compareCards(play1, play2) {
 }
 
 
-//displays points on screen
-function updateScore() {
-	playerOneScore = playerDecks[1].length
-	playerTwoScore = playerDecks[-1].length
-	playerOneScoreEl.innerText = playerOneScore
-	playerTwoScoreEl.innerText = playerTwoScore
-};
 
 // function goToWar() {
 // 	//get card from playerDecks for player1
@@ -213,8 +204,8 @@ function render() {
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
 	//change score based on length of player array
-	playerOneScoreEl.innerHTML = playerOneScore
-	playerTwoScoreEl.innerHTML = playerTwoScore
+	playerOneScoreEl.innerHTML = playerDecks[1].length
+	playerTwoScoreEl.innerHTML = playerDecks[-1].length
 	//change board based on tieInPlay
 	if (!isTie) {
 		tieArena.style.display = 'none';
