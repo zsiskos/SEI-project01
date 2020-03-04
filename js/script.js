@@ -210,14 +210,16 @@ function render() {
 	playerOneScoreEl.innerHTML = playerDecks[1].length
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
 	//change board based on tieInPlay
-	if (!isTie) {
-		tieArena.style.display = 'none';
-	} else if (isTie) {
+	if (isTie) {
 		titleEl.innerText = "Go to WAR!";
 		titleEl.style.color = "red";
 		tieArena.style.display = 'flex'
-
-	}
+	} else {
+		titleEl.innerText = "WAR";
+		titleEl.style.color = "#7585AB";
+		tieArena.style.display = 'none';
+		
+	} 
 	//show winner based on winner
 		//player one wins
 		if (winner === 1) {
