@@ -5,9 +5,9 @@ This is the popular card game 'war', for a project in my software engineering co
 
 ## Game play images
 
-![start of game play](http:/Users/zsiskos/SEI/SEI-project01/images/readme/gamePlayFight.png "Game Play Start") {:height="20%" width="50%"}
+![start of game play](http:/github.com/zsiskos/SEI-project01/images/readme/gamePlayFight.png "Game Play Start") {:height="20%" width="50%"}
 
-
+![start of game play](images/readme/gamePlayInTie.png "Game Play Start") {:height="20%" width="50%"}
 
 Images of your actual game.
 
