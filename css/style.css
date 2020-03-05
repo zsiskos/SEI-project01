@@ -170,7 +170,7 @@ a {
     margin: auto;
     padding: 20px;
     border: 1px solid #172C5B;
-    width: 80%;
+    max-width: 600px;
   }
   
   /* The Close Button */

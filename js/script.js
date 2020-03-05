@@ -33,6 +33,15 @@ class Deck {
     }
 }
 
+const PLAYERNAMES = {
+	'DarthVadar': 'Luke SkyWalker'
+}
+
+// names = [['D', 'L'], []]
+
+// Object.keys(PLAYERNAMES) === ["Darth"]
+// PLAYERNAMES[arr[0]]
+
 // game state variables
 let deck = []
 let playerDecks = {
@@ -45,6 +54,7 @@ let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
 let winner;
 let isTie;
 let inPlay;
+let playerOneName, playerTwoName;
 
 //cached references
 	//Game board
@@ -64,6 +74,10 @@ let playerOneTie3El = document.getElementById('player1tie3');
 let playerTwoTie1El = document.getElementById('player2tie1');
 let playerTwoTie2El = document.getElementById('player2tie2');
 let playerTwoTie3El = document.getElementById('player2tie3');
+
+	//playerNames
+let playerOneNameEl = document.getElementById('p1Name')
+let playerTwoNameEl = document.getElementById('p2Name')
 
 //event listeners
 fightEl.addEventListener('click', initiateWar)
@@ -90,6 +104,8 @@ function init() {
 			deck.push(new Deck(suit, val))
 		})
 	})
+	//assigns players names
+	playerOneName = PLAYERNAMES['DarthVadar']
 	//deals cards to players
 	splitDeck()
 	console.log(deck)
@@ -189,6 +205,8 @@ function resetGame() {
 }
 
 function render() {
+	//change names based on picker
+	
 	//change card based on playercards
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
@@ -203,8 +221,8 @@ function render() {
 		fightEl.style.visibility = 'hidden'
 		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
-		document.getElementById('p1Name').innerHTML = "Player 1"
-		document.getElementById('p2Name').innerHTML = "Player 2"
+		playerOneNameEl.innerHTML = playerOneName
+		playerTwoNameEl.innerHTML = "Player 2"
 		fightEl.style.visibility = 'visible'
 		
 	}
