@@ -95,10 +95,15 @@ main div {
     width: 300px;
 }
 
+.player-tie {
+    margin: 0 10px;
+}
+.player-tie > .player {
+    margin: 5px;
+}
 .player img {
     max-width: 100%;
     height: auto;
-    object-fit: contain;
  }
  
 img {
