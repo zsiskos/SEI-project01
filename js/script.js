@@ -35,24 +35,24 @@ class Deck {
 
 const PLAYERNAMES = [['Darth Vader', 'Luke Skywalker'], ['Lex Luthor', 'Superman'], ['Thanos', 'Avengers'], ['Global Warming', 'Greta Thunburg'], ['Moriarty', 'Sherlock Holmes'], ['Tom', 'Jerry'], ['Joker', 'Batman'], ['Wile E. Coyote', 'Roadrunner'], ['Voldemort', 'Harry Potter'], ['Matt Damon', 'Jimmy Kimmel'], ['Newman','Seinfeld'], ['Goliath', 'David'], ['Edison', 'Tesla'], ['Tupac', 'Biggie'], ['Pepsi', 'Coke'], ['Agent Smith', 'Neo'], ['Anakin', 'Obiwan'],['Sid', 'Woody'], ['Hitler', 'Churchill'], ['Pizzaz', 'Jem'], ['Kayne', 'Taylor Swift']]
 
-// game state variables
+// Game State Variables
 let deck = []
 let playerDecks = {
 	'1': [],
 	'-1': []
 }
-let cardsInPlay = [];
+let cardsInPlay = []
 let playerOneCard, playerOneTie1, playerOneTie2, playerOneTie3
 let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
-let winner;
-let isTie;
-let inPlay;
-let pickNamesIndex;
-let playerOneName;
-let playerTwoName; 
+let winner
+let isTie
+let inPlay
+let pickNamesIndex
+let playerOneName
+let playerTwoName 
 
 
-//cached references
+//Cached References
 	//Game board
 let tieArena = document.querySelector('.tie-arena')
 let titleEl = document.querySelector('h1');
@@ -60,22 +60,22 @@ let fightEl = document.getElementById('fight')
 let playAgainEl = document.getElementById('reset')
 
 	//Player Cards
-let cardOneElement = document.getElementById('player1Card');
-let cardTwoElement = document.getElementById('player2Card');
-let playerOneScoreEl = document.getElementById('score1');
-let playerTwoScoreEl = document.getElementById('score2');
-let playerOneTie1El = document.getElementById('player1tie1');
-let playerOneTie2El = document.getElementById('player1tie2');
-let playerOneTie3El = document.getElementById('player1tie3');
-let playerTwoTie1El = document.getElementById('player2tie1');
-let playerTwoTie2El = document.getElementById('player2tie2');
-let playerTwoTie3El = document.getElementById('player2tie3');
+let cardOneElement = document.getElementById('player1Card')
+let cardTwoElement = document.getElementById('player2Card')
+let playerOneScoreEl = document.getElementById('score1')
+let playerTwoScoreEl = document.getElementById('score2')
+let playerOneTie1El = document.getElementById('player1tie1')
+let playerOneTie2El = document.getElementById('player1tie2')
+let playerOneTie3El = document.getElementById('player1tie3')
+let playerTwoTie1El = document.getElementById('player2tie1')
+let playerTwoTie2El = document.getElementById('player2tie2')
+let playerTwoTie3El = document.getElementById('player2tie3')
 
-	//playerNames
+	//Player Names
 let playerOneNameEl = document.getElementById('p1Name')
 let playerTwoNameEl = document.getElementById('p2Name')
 
-//event listeners
+//Event Listeners
 fightEl.addEventListener('click', initiateWar)
 playAgainEl.addEventListener('click', init)
 
@@ -84,7 +84,7 @@ playAgainEl.addEventListener('click', init)
 init()
 
 function init() {
-	//sets game state to normal
+//sets game state to normal
 	inPlay = false
 	winner = false
 	deck = []
@@ -94,30 +94,28 @@ function init() {
 	}
 	cardsInPlay = []
 	isTie = false
-	//Creates the deck
+//Creates the deck
 	SUITS.forEach(suit => {
 		VALUES.forEach(val => {
 			deck.push(new Deck(suit, val))
 		})
 	})
-	//assigns players names
-	
-	//deals cards to players
+//Deals cards to players
 	splitDeck()
 	console.log(deck)
 	console.log(playerDecks)
+//Assigns player names
 	pickNames()
 	renderTieArena()
 	render()
 }
 
-//Picks Names for players
+//Picks names for players
 function pickNames() {
-	//pick random number
 	let pickNamesIndex;
 	pickNamesIndex = Math.floor(Math.random() * PLAYERNAMES.length);	
-	playerOneName = PLAYERNAMES[pickNamesIndex][1];
-	playerTwoName = PLAYERNAMES[pickNamesIndex][0];
+	playerOneName = PLAYERNAMES[pickNamesIndex][1]
+	playerTwoName = PLAYERNAMES[pickNamesIndex][0]
 }
 
 //Splits deck randomly into two decks for players
@@ -159,7 +157,6 @@ function initiateWar() {
 	render()
 }
 
-
 //Compares cards to see who wins that battle
 function compareCards(play1, play2) {
 	console.log("checking")
@@ -186,14 +183,11 @@ function compareCards(play1, play2) {
 	console.log(cardsInPlay)
 	console.log(playerDecks)
 	// check if there are any cards left to play
-	
 	if (playerDecks[1].length === 0 || playerDecks[-1].length === 0) {
 		console.log('time to check winner')
-		checkWinner();
+		checkWinner()
 	}
 }
-
-
 
 //Comparing final scores to find a winner
 function checkWinner() {
@@ -205,21 +199,14 @@ function checkWinner() {
 	render();
 }
 
-//click button to reset game
-function resetGame() {
-	console.log('reset')
-}
-
 function render() {
-	//change names based on picker
-	
 	//change card based on playercards
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
 	//change score based on length of player array
 	playerOneScoreEl.innerHTML = playerDecks[1].length
 	playerTwoScoreEl.innerHTML = playerDecks[-1].length
-	//show winner based on winner
+	//show winner or not
 	if (winner === 1) {
 		fightEl.style.visibility = 'hidden'
 		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
@@ -229,8 +216,7 @@ function render() {
 	} else {
 		playerOneNameEl.innerHTML = playerOneName
 		playerTwoNameEl.innerHTML = playerTwoName
-		fightEl.style.visibility = 'visible'
-		
+		fightEl.style.visibility = 'visible'	
 	}
 }
 
