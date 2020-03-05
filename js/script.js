@@ -33,6 +33,8 @@ class Deck {
     }
 }
 
+const PLAYERNAMES = [['Darth Vader', 'Luke Skywalker'], ['Lex Luthor', 'Superman'], ['Thanos', 'Avengers'], ['Global Warming', 'Greta Thunburg'], ['Moriarty', 'Sherlock Holmes'], ['Tom', 'Jerry'], ['Joker', 'Batman'], ['Wile E. Coyote', 'Roadrunner'], ['Voldemort', 'Harry Potter'], ['Matt Damon', 'Jimmy Kimmel'], ['Newman','Seinfeld'], ['Goliath', 'David'], ['Edison', 'Tesla'], ['Tupac', 'Biggie'], ['Pepsi', 'Coke'], ['Agent Smith', 'Neo'], ['Anakin', 'Obiwan'],['Sid', 'Woody'], ['Hitler', 'Churchill'], ['Pizzaz', 'Jem'], ['Kayne', 'Taylor Swift']]
+
 // game state variables
 let deck = []
 let playerDecks = {
@@ -45,6 +47,10 @@ let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
 let winner;
 let isTie;
 let inPlay;
+let pickNamesIndex;
+let playerOneName;
+let playerTwoName; 
+
 
 //cached references
 	//Game board
@@ -64,6 +70,10 @@ let playerOneTie3El = document.getElementById('player1tie3');
 let playerTwoTie1El = document.getElementById('player2tie1');
 let playerTwoTie2El = document.getElementById('player2tie2');
 let playerTwoTie3El = document.getElementById('player2tie3');
+
+	//playerNames
+let playerOneNameEl = document.getElementById('p1Name')
+let playerTwoNameEl = document.getElementById('p2Name')
 
 //event listeners
 fightEl.addEventListener('click', initiateWar)
@@ -90,12 +100,24 @@ function init() {
 			deck.push(new Deck(suit, val))
 		})
 	})
+	//assigns players names
+	
 	//deals cards to players
 	splitDeck()
 	console.log(deck)
 	console.log(playerDecks)
+	pickNames()
 	renderTieArena()
 	render()
+}
+
+//Picks Names for players
+function pickNames() {
+	//pick random number
+	let pickNamesIndex;
+	pickNamesIndex = Math.floor(Math.random() * PLAYERNAMES.length);	
+	playerOneName = PLAYERNAMES[pickNamesIndex][1];
+	playerTwoName = PLAYERNAMES[pickNamesIndex][0];
 }
 
 //Splits deck randomly into two decks for players
@@ -189,6 +211,8 @@ function resetGame() {
 }
 
 function render() {
+	//change names based on picker
+	
 	//change card based on playercards
 	cardOneElement.src = inPlay ? playerOneCard.imgUrl : "images/backs/blue.svg"
 	cardTwoElement.src = inPlay ? playerTwoCard.imgUrl : "images/backs/blue.svg"
@@ -203,8 +227,8 @@ function render() {
 		fightEl.style.visibility = 'hidden'
 		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
-		document.getElementById('p1Name').innerHTML = "Player 1"
-		document.getElementById('p2Name').innerHTML = "Player 2"
+		playerOneNameEl.innerHTML = playerOneName
+		playerTwoNameEl.innerHTML = playerTwoName
 		fightEl.style.visibility = 'visible'
 		
 	}
