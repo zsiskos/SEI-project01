@@ -34,3 +34,9 @@
 
     Cards:
     - use custom cards 
+
+
+** Tie logic
+- when comparecards and tie, set isTie to true and deal additional cards 
+- game board changes and player will need to click fight to check cards
+- comparecards when isTie will take all cards and put them on winner deck
