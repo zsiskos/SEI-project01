@@ -33,14 +33,7 @@ class Deck {
     }
 }
 
-const PLAYERNAMES = {
-	'DarthVadar': 'Luke SkyWalker'
-}
-
-// names = [['D', 'L'], []]
-
-// Object.keys(PLAYERNAMES) === ["Darth"]
-// PLAYERNAMES[arr[0]]
+const PLAYERNAMES = [['Darth Vader', 'Luke Skywalker'], ['Lex Luthor', 'Superman'], ['Thanos', 'Avengers'], ['Global Warming', 'Greta Thunburg'], ['Moriarty', 'Sherlock Holmes'], ['Tom', 'Jerry'], ['Joker', 'Batman'], ['Wile E. Coyote', 'Roadrunner'], ['Voldemort', 'Harry Potter'], ['Matt Damon', 'Jimmy Kimmel'], ['Newman','Seinfeld'], ['Goliath', 'David'], ['Edison', 'Tesla'], ['Tupac', 'Biggie'], ['Pepsi', 'Coke'], ['Agent Smith', 'Neo'], ['Anakin', 'Obiwan'],['Sid', 'Woody'], ['Hitler', 'Churchill'], ['Pizzaz', 'Jem'], ['Kayne', 'Taylor Swift']]
 
 // game state variables
 let deck = []
@@ -54,7 +47,10 @@ let playerTwoCard, playerTwoTie1, playerTwoTie2, playerTwoTie3
 let winner;
 let isTie;
 let inPlay;
-let playerOneName, playerTwoName;
+let pickNamesIndex;
+let playerOneName;
+let playerTwoName; 
+
 
 //cached references
 	//Game board
@@ -105,13 +101,23 @@ function init() {
 		})
 	})
 	//assigns players names
-	playerOneName = PLAYERNAMES['DarthVadar']
+	
 	//deals cards to players
 	splitDeck()
 	console.log(deck)
 	console.log(playerDecks)
+	pickNames()
 	renderTieArena()
 	render()
+}
+
+//Picks Names for players
+function pickNames() {
+	//pick random number
+	let pickNamesIndex;
+	pickNamesIndex = Math.floor(Math.random() * PLAYERNAMES.length);	
+	playerOneName = PLAYERNAMES[pickNamesIndex][1];
+	playerTwoName = PLAYERNAMES[pickNamesIndex][0];
 }
 
 //Splits deck randomly into two decks for players
@@ -222,7 +228,7 @@ function render() {
 		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
 	} else {
 		playerOneNameEl.innerHTML = playerOneName
-		playerTwoNameEl.innerHTML = "Player 2"
+		playerTwoNameEl.innerHTML = playerTwoName
 		fightEl.style.visibility = 'visible'
 		
 	}
