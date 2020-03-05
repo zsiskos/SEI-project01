@@ -32,8 +32,6 @@ This is the popular card game **War**, that I created for a project in my softwa
 3. JavaScript
 
 ## Getting Started (How to play)
-*[This link to video instructions](https://youtu.be/LeB_PnAWJXA) is also in the 'How to Play' section on the website*
-
 + Cards and player names are dealt automatically at start of game
 
 + click **FIGHT** button to deal a hand
@@ -51,6 +49,8 @@ This is the popular card game **War**, that I created for a project in my softwa
 + When one player has no cards a winner will be decided and it will be displayed on screen (*the fight button will be removed*)
 
 + To play again (or to reset game in middle of play), click the reset button
+
+*A video of instructions is linked in the 'How to Play' section on the website*
 
 ## Next Steps
 I am currently working on making this game so that it can be played on mobile. 
