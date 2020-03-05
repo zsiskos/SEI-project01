@@ -51,19 +51,18 @@ h1 {
 }
 
 h2 {
-    margin: 40px 20px 10px 40px;
+    margin: 20px 20px 10px 20px;
     text-align: center;
     font-size: 35px;
 }
 
 main {
     display: flex;
-    align-self: center;
     justify-content: space-around;
     width: auto;
     margin: 20px auto 0px auto;
     padding: 10px;
- }
+}
 
 p {
     margin: 10px 0 0 0;
@@ -88,8 +87,12 @@ p {
     margin: auto;
 }
 
-.player {
+main div {
     margin: 10px;
+}
+
+.playerInfo {
+    width: 300px;
 }
 
 .player img {
