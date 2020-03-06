@@ -5,7 +5,7 @@ This is the popular card game **War**, that I created for a project in my softwa
 
 ---
 #### Start of game
-![game play start](images/readme/gamePlayStart.png "Start of game")
+![game play start](images/readme/gamePlayStart.png "Start of game") 
 
 ----
 #### Game in play
@@ -32,6 +32,8 @@ This is the popular card game **War**, that I created for a project in my softwa
 3. JavaScript
 
 ## Getting Started (How to play)
+<a href="https://zsiskos.github.io/card-game-war/" target="_blank">Click here to play the game.</a>
+
 + Cards and player names are dealt automatically at start of game
 
 + click **FIGHT** button to deal a hand
