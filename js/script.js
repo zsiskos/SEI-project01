@@ -33,7 +33,7 @@ class Deck {
     }
 }
 
-const PLAYERNAMES = [['Darth Vader', 'Luke Skywalker'], ['Lex Luthor', 'Superman'], ['Thanos', 'Avengers'], ['Global Warming', 'Greta Thunburg'], ['Moriarty', 'Sherlock Holmes'], ['Tom', 'Jerry'], ['Joker', 'Batman'], ['Wile E. Coyote', 'Roadrunner'], ['Voldemort', 'Harry Potter'], ['Matt Damon', 'Jimmy Kimmel'], ['Newman','Seinfeld'], ['Goliath', 'David'], ['Edison', 'Tesla'], ['Tupac', 'Biggie'], ['Pepsi', 'Coke'], ['Agent Smith', 'Neo'], ['Anakin', 'Obiwan'],['Sid', 'Woody'], ['Hitler', 'Churchill'], ['Pizzaz', 'Jem'], ['Kayne', 'Taylor Swift']]
+const PLAYERNAMES = [['Darth Vader', 'Luke Skywalker'], ['Lex Luthor', 'Superman'], ['Thanos', 'Avengers'], ['Global Warming', 'Greta Thunburg'], ['Moriarty', 'Sherlock Holmes'], ['Tom', 'Jerry'], ['Joker', 'Batman'], ['Wile E. Coyote', 'Roadrunner'], ['Voldemort', 'Harry Potter'], ['Matt Damon', 'Jimmy Kimmel'], ['Newman','Seinfeld'], ['Goliath', 'David'], ['Edison', 'Tesla'], ['Tupac', 'Biggie'], ['Pepsi', 'Coke'], ['Agent Smith', 'Neo'], ['Anakin', 'Obiwan'],['Sid', 'Woody'], ['Hitler', 'Churchill'], ['Pizzaz', 'Jem'], ['Kayne', 'Taylor Swift'], ['The World', 'Trump'], ['Ninja Turtles', 'Splinter'],['The Tick', 'The Terror'], ['Odin', 'Fenrir'], ['Thor', 'Jormungandr'], ['Loki', 'Heimdallr']]
 
 // Game State Variables
 let deck = []
@@ -153,8 +153,8 @@ function initiateWar() {
 		console.log(cardsInPlay)
 		renderTieCards()
 	} 
-	compareCards(playerOneCard.rank, playerTwoCard.rank)
 	render()
+	compareCards(playerOneCard.rank, playerTwoCard.rank)
 }
 
 //Compares cards to see who wins that battle
@@ -209,10 +209,10 @@ function render() {
 	//show winner or not
 	if (winner === 1) {
 		fightEl.style.visibility = 'hidden'
-		document.getElementById('p1Name').insertAdjacentText("beforeend", ` won the war.`)
+		playerOneNameEl.insertAdjacentText("beforeend", ` won the war.`)
 	} else if (winner === -1) {
 		fightEl.style.visibility = 'hidden'
-		document.getElementById('p2Name').insertAdjacentText("beforeend", ` won the war.`)
+		playerTwoNameEl.insertAdjacentText("beforeend", ` won the war.`)
 	} else {
 		playerOneNameEl.innerHTML = playerOneName
 		playerTwoNameEl.innerHTML = playerTwoName
