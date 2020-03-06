@@ -32,7 +32,7 @@ This is the popular card game **War**, that I created for a project in my softwa
 3. JavaScript
 
 ## Getting Started (How to play)
-[Click here to play the game.](https://zsiskos.github.io/card-game-war/, "Play the card game, War.")
+[Click here to play the game.](https://zsiskos.github.io/card-game-war/ "Play the card game, War.")
 
 + Cards and player names are dealt automatically at start of game
 
